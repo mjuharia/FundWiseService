@@ -83,6 +83,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
@@ -108,14 +109,15 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<!-- Adding configuration for docker image Date: 5/03/2025 -->
+				<!-- Adding configuration for docker image Date: 05/03/2025 -->
 				<configuration>
 					<image>
+					 	<builder>paketobuildpacks/builder:base</builder>
 						<name>mjuharia76/mmv3-${project.artifactId}:${project.version}</name>
 					</image>
 					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
 				</configuration>
-				<!-- End Of : Adding configuration for docker image Date: 11/03/2025 -->
+				<!-- End Of : Adding configuration for docker image Date: 05/03/2025 -->
 			</plugin>
 		</plugins>
 	</build>
