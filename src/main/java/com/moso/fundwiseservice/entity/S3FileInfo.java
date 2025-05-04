@@ -1,4 +1,4 @@
-package com.moso.FundWiseService.entity;
+package com.moso.fundwiseservice.entity;
 
 import java.time.Instant;
 

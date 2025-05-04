@@ -1,4 +1,4 @@
-package com.moso.FundWiseService;
+package com.moso.fundwiseservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
