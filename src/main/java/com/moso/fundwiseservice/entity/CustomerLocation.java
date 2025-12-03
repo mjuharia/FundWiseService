@@ -15,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity(name="customer_location")
 public class CustomerLocation {
@@ -32,6 +33,9 @@ public class CustomerLocation {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	private CustomerProfile iCustomerProfile;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Organization iOrg;
 	private String postalcode;
 	private String createdBy;
 	@CreationTimestamp
@@ -40,6 +44,7 @@ public class CustomerLocation {
 	@UpdateTimestamp
 	private Date modifiedDate;
 	private Boolean isActive;
+	
 	
 	public CustomerLocation() {
 		super();
@@ -161,14 +166,25 @@ public class CustomerLocation {
 		this.country = country;
 	}
 
+	
+
+	public Organization getiOrg() {
+		return iOrg;
+	}
+
+	public void setiOrg(Organization iOrg) {
+		this.iOrg = iOrg;
+	}
+
 	@Override
 	public String toString() {
 		return "CustomerLocation [Id=" + Id + ", locationAlias=" + locationAlias + ", address=" + address + ", city="
 				+ city + ", state=" + state + ", country=" + country + ", iCustomerServicingGroups="
-				+ iCustomerServicingGroups + ", iCustomerProfile=" + iCustomerProfile + ", postalcode=" + postalcode
-				+ ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy
-				+ ", modifiedDate=" + modifiedDate + ", isActive=" + isActive + "]";
+				+ iCustomerServicingGroups + ", iCustomerProfile=" + iCustomerProfile + ", iOrg=" + iOrg
+				+ ", postalcode=" + postalcode + ", createdBy=" + createdBy + ", createdDate=" + createdDate
+				+ ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + ", isActive=" + isActive + "]";
 	}
 
+	
 		
 }

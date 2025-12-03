@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity(name="customer_invoice_method_map")
 public class CustomerInvoiceMethodMap {
@@ -32,6 +33,9 @@ public class CustomerInvoiceMethodMap {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	private CustomerContact iCustomerContact;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Organization iOrg;
 	
 	public CustomerInvoiceMethodMap() {
 		super();
@@ -118,12 +122,22 @@ public class CustomerInvoiceMethodMap {
 		this.iCustomerContact = iCustomerContact;
 	}
 
+	
+
+	public Organization getiOrg() {
+		return iOrg;
+	}
+
+	public void setiOrg(Organization iOrg) {
+		this.iOrg = iOrg;
+	}
+
 	@Override
 	public String toString() {
 		return "CustomerInvoiceMethodMap [Id=" + Id + ", invoiceMethodId=" + invoiceMethodId + ", invoiceMethod="
 				+ invoiceMethod + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy="
 				+ modifiedBy + ", modifiedDate=" + modifiedDate + ", isActive=" + isActive + ", isPrimary=" + isPrimary
-				+ ", iCustomerContact=" + iCustomerContact + "]";
+				+ ", iCustomerContact=" + iCustomerContact + ", iOrg=" + iOrg + "]";
 	}
 	
 	

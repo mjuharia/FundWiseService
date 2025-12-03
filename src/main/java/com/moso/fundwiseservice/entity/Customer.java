@@ -11,10 +11,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity(name="customer")
 public class Customer {
@@ -34,6 +37,10 @@ public class Customer {
 	private String modifiedBy;
 	@UpdateTimestamp
 	private Date modifiedOn;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Organization iOrg;
 	
 	@OneToMany(mappedBy = "iCustomer")
 	@JsonIgnore
@@ -185,13 +192,22 @@ public class Customer {
 		this.country = country;
 	}
 
+		
+	public Organization getiOrg() {
+		return iOrg;
+	}
+
+	public void setiOrg(Organization iOrg) {
+		this.iOrg = iOrg;
+	}
+
 	@Override
 	public String toString() {
 		return "Customer [Id=" + Id + ", Name=" + Name + ", taxID=" + taxID + ", address=" + address + ", city=" + city
 				+ ", state=" + state + ", country=" + country + ", postalCcode=" + postalCcode + ", createdBy="
 				+ createdBy + ", createdOn=" + createdOn + ", modifiedBy=" + modifiedBy + ", modifiedOn=" + modifiedOn
-				+ ", custContacts=" + custContacts + ", custProfile=" + custProfile + ", custWireInstruction="
-				+ custWireInstruction + ", isActive=" + isActive + "]";
+				+ ", iOrg=" + iOrg + ", custContacts=" + custContacts + ", custProfile=" + custProfile
+				+ ", custWireInstruction=" + custWireInstruction + ", isActive=" + isActive + "]";
 	}
 
 	

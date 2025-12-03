@@ -15,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity(name="customer_profile")
 public class CustomerProfile {
@@ -27,7 +28,9 @@ public class CustomerProfile {
 	@OneToMany(mappedBy = "iCustomerProfile")
 	@JsonIgnore
 	private List<CustomerLocation> iCustomerLocations;
-	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Organization iOrg;
 	private String profileType;
 	private String createdBy;
 	@CreationTimestamp
@@ -97,11 +100,22 @@ public class CustomerProfile {
 	public void setProfileType(String profileType) {
 		this.profileType = profileType;
 	}
+	
+
+	public Organization getiOrg() {
+		return iOrg;
+	}
+	public void setiOrg(Organization iOrg) {
+		this.iOrg = iOrg;
+	}
 	@Override
 	public String toString() {
 		return "CustomerProfile [Id=" + Id + ", iCustomer=" + iCustomer + ", iCustomerLocations=" + iCustomerLocations
-				+ ", profileType=" + profileType + ", createdBy=" + createdBy + ", createdDate=" + createdDate
-				+ ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + ", isActive=" + isActive + "]";
+				+ ", iOrg=" + iOrg + ", profileType=" + profileType + ", createdBy=" + createdBy + ", createdDate="
+				+ createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + ", isActive="
+				+ isActive + "]";
 	}
+	
+	
 	
 }

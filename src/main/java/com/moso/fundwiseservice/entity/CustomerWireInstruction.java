@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity(name="customer_wire_instruction")
 public class CustomerWireInstruction {
@@ -25,6 +26,9 @@ public class CustomerWireInstruction {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	private CustomerServicingGroup iCustomerServicingGroup;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Organization iOrg;
 	private String accountNumber;
 	private String routingNumber;
 	private String bankName;
@@ -106,18 +110,26 @@ public class CustomerWireInstruction {
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
-	@Override
-	public String toString() {
-		return "CustomerWireInstruction [Id=" + Id + ", iCustomer=" + iCustomer + ", accountNumber=" + accountNumber
-				+ ", routingNumber=" + routingNumber + ", bankName=" + bankName + ", comments=" + comments
-				+ ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy
-				+ ", modifiedDate=" + modifiedDate + ", isActive=" + isActive + "]";
-	}
+	
 	public CustomerServicingGroup getiCustomerServicingGroup() {
 		return iCustomerServicingGroup;
 	}
 	public void setiCustomerServicingGroup(CustomerServicingGroup iCustomerServicingGroup) {
 		this.iCustomerServicingGroup = iCustomerServicingGroup;
+	}
+	public Organization getiOrg() {
+		return iOrg;
+	}
+	public void setiOrg(Organization iOrg) {
+		this.iOrg = iOrg;
+	}
+	@Override
+	public String toString() {
+		return "CustomerWireInstruction [Id=" + Id + ", iCustomer=" + iCustomer + ", iCustomerServicingGroup="
+				+ iCustomerServicingGroup + ", iOrg=" + iOrg + ", accountNumber=" + accountNumber + ", routingNumber="
+				+ routingNumber + ", bankName=" + bankName + ", comments=" + comments + ", createdBy=" + createdBy
+				+ ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate
+				+ ", isActive=" + isActive + "]";
 	}
 	
 	

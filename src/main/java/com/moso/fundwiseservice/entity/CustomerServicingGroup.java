@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity(name="customer_servicing_group")
 public class CustomerServicingGroup {
@@ -27,6 +28,9 @@ public class CustomerServicingGroup {
 	@OneToMany(mappedBy = "iCustomerServicingGroup")
 	@JsonIgnore
 	private List<CustomerContact> custContactList;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Organization iOrg;
 	private String name;
 	private String alias;
 	private Boolean isActive;
@@ -78,11 +82,19 @@ public class CustomerServicingGroup {
 	public void setiCustomerLocation(CustomerLocation iCustomerLocation) {
 		this.iCustomerLocation = iCustomerLocation;
 	}
+
+
+	public Organization getiOrg() {
+		return iOrg;
+	}
+	public void setiOrg(Organization iOrg) {
+		this.iOrg = iOrg;
+	}
 	@Override
 	public String toString() {
 		return "CustomerServicingGroup [Id=" + Id + ", iCustomerLocation=" + iCustomerLocation
 				+ ", custWireInstructionList=" + custWireInstructionList + ", custContactList=" + custContactList
-				+ ", name=" + name + ", alias=" + alias + ", isActive=" + isActive + "]";
+				+ ", iOrg=" + iOrg + ", name=" + name + ", alias=" + alias + ", isActive=" + isActive + "]";
 	}
 	
 	

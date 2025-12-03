@@ -15,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity(name="customer_contact")
 public class CustomerContact {
@@ -30,6 +31,9 @@ public class CustomerContact {
 	@OneToMany(mappedBy = "iCustomerContact")
 	@JsonIgnore
 	private List<CustomerInvoiceMethodMap> custInvoiceMethods; // fax, email, etc.
+	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Organization iOrg;
 	private String firstName;
 	private String lastName;
 	private String emailAddress;
@@ -169,15 +173,23 @@ public class CustomerContact {
 	public void setCustInvoiceMethods(List<CustomerInvoiceMethodMap> custInvoiceMethods) {
 		this.custInvoiceMethods = custInvoiceMethods;
 	}
+		
+	
+	public Organization getiOrg() {
+		return iOrg;
+	}
+	public void setiOrg(Organization iOrg) {
+		this.iOrg = iOrg;
+	}
 	@Override
 	public String toString() {
 		return "CustomerContact [Id=" + Id + ", iCustomer=" + iCustomer + ", iCustomerServicingGroup="
-				+ iCustomerServicingGroup + ", custInvoiceMethods=" + custInvoiceMethods + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", emailAddress=" + emailAddress + ", phoneNumber=" + phoneNumber
-				+ ", faxNumber=" + faxNumber + ", address=" + address + ", city=" + city + ", state=" + state
-				+ ", country=" + country + ", postalcode=" + postalcode + ", createdBy=" + createdBy + ", createdDate="
-				+ createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + ", isActive="
-				+ isActive + "]";
+				+ iCustomerServicingGroup + ", custInvoiceMethods=" + custInvoiceMethods + ", iOrg=" + iOrg
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", emailAddress=" + emailAddress
+				+ ", phoneNumber=" + phoneNumber + ", faxNumber=" + faxNumber + ", address=" + address + ", city="
+				+ city + ", state=" + state + ", country=" + country + ", postalcode=" + postalcode + ", createdBy="
+				+ createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate="
+				+ modifiedDate + ", isActive=" + isActive + "]";
 	}
 	
 	
