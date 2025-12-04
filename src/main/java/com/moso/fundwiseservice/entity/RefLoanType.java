@@ -10,13 +10,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity(name="ref_customer_profile_type")
-public class CustomerProfileType {
+@Entity(name="ref_loan_type")
+public class RefLoanType {
+
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")
 	private Integer Id;
-	private String shortCode;
-	private String Name;
+	//FIX_AND_FLIP,
+	//CONSTRUCTION,
+    //RENTAL_DSCR,
+    //BRIDGE,
+	//Others
+	private String type;
+	
+	private String description;
 	private String createdBy;
 	@CreationTimestamp
 	private Date createdDate; 
@@ -24,7 +31,7 @@ public class CustomerProfileType {
 	@UpdateTimestamp
 	private Date modifiedDate;
 	private Boolean isActive;
-	public CustomerProfileType() {
+	public RefLoanType() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -34,17 +41,17 @@ public class CustomerProfileType {
 	public void setId(Integer id) {
 		Id = id;
 	}
-	public String getShortCode() {
-		return shortCode;
+	public String getType() {
+		return type;
 	}
-	public void setShortCode(String shortCode) {
-		this.shortCode = shortCode;
+	public void setType(String type) {
+		this.type = type;
 	}
-	public String getName() {
-		return Name;
+	public String getDescription() {
+		return description;
 	}
-	public void setName(String name) {
-		Name = name;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getCreatedBy() {
 		return createdBy;
@@ -78,9 +85,9 @@ public class CustomerProfileType {
 	}
 	@Override
 	public String toString() {
-		return "CustomerProfileType [Id=" + Id + ", shortCode=" + shortCode + ", Name=" + Name + ", createdBy="
-				+ createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate="
-				+ modifiedDate + ", isActive=" + isActive + "]";
+		return "RefLoanType [Id=" + Id + ", type=" + type + ", description=" + description + ", createdBy=" + createdBy
+				+ ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate
+				+ ", isActive=" + isActive + "]";
 	}
 	
 	

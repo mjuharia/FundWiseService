@@ -1,37 +1,24 @@
 package com.moso.fundwiseservice.entity;
 
 import java.sql.Date;
-import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
-@Entity(name="customer_profile")
-public class CustomerProfile {
+@Entity(name="ref_country")
+public class RefCountry {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")
 	private Integer Id;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnore
-	private Customer iCustomer;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "organization_id")
-	@JsonIgnore
-	private Organization iOrg;
-	private String profileType;
+	private String shortCode;
+	private String Name;
 	private String createdBy;
 	@CreationTimestamp
 	private Date createdDate; 
@@ -40,75 +27,80 @@ public class CustomerProfile {
 	private Date modifiedDate;
 	private Boolean isActive;
 	
-	public CustomerProfile() {
+	public RefCountry() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public Integer getId() {
 		return Id;
 	}
+
 	public void setId(Integer id) {
 		Id = id;
 	}
-	public Customer getiCustomer() {
-		return iCustomer;
+
+	public String getShortCode() {
+		return shortCode;
 	}
-	public void setiCustomer(Customer iCustomer) {
-		this.iCustomer = iCustomer;
+
+	public void setShortCode(String shortCode) {
+		this.shortCode = shortCode;
 	}
-	
+
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
 	public String getCreatedBy() {
 		return createdBy;
 	}
+
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
+
 	public Date getCreatedDate() {
 		return createdDate;
 	}
+
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+
 	public String getModifiedBy() {
 		return modifiedBy;
 	}
+
 	public void setModifiedBy(String modifiedBy) {
 		this.modifiedBy = modifiedBy;
 	}
+
 	public Date getModifiedDate() {
 		return modifiedDate;
 	}
+
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
-		
+
 	public Boolean getIsActive() {
 		return isActive;
 	}
+
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
-	
-	public String getProfileType() {
-		return profileType;
-	}
-	public void setProfileType(String profileType) {
-		this.profileType = profileType;
-	}
-	
 
-	public Organization getiOrg() {
-		return iOrg;
-	}
-	public void setiOrg(Organization iOrg) {
-		this.iOrg = iOrg;
-	}
 	@Override
 	public String toString() {
-		return "CustomerProfile [Id=" + Id + ", iCustomer=" + iCustomer 
-				+ ", iOrg=" + iOrg + ", profileType=" + profileType + ", createdBy=" + createdBy + ", createdDate="
-				+ createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + ", isActive="
-				+ isActive + "]";
+		return "Coutry [Id=" + Id + ", shortCode=" + shortCode + ", Name=" + Name + ", createdBy=" + createdBy
+				+ ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate
+				+ ", isActive=" + isActive + "]";
 	}
 	
 	

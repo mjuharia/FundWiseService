@@ -10,7 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity(name="organization")
+@Entity(name="organizations")
 public class Organization {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")

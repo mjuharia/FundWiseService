@@ -1,37 +1,27 @@
 package com.moso.fundwiseservice.entity;
 
 import java.sql.Date;
-import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
-@Entity(name="customer_profile")
-public class CustomerProfile {
+@Entity(name="ref_interestrate_type")
+public class RefInterestRateType {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")
 	private Integer Id;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnore
-	private Customer iCustomer;
+	//FIXED,
+	//FLOATING,
+   
+	//Others
+	private String type;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "organization_id")
-	@JsonIgnore
-	private Organization iOrg;
-	private String profileType;
+	private String description;
 	private String createdBy;
 	@CreationTimestamp
 	private Date createdDate; 
@@ -39,8 +29,7 @@ public class CustomerProfile {
 	@UpdateTimestamp
 	private Date modifiedDate;
 	private Boolean isActive;
-	
-	public CustomerProfile() {
+	public RefInterestRateType() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -50,13 +39,18 @@ public class CustomerProfile {
 	public void setId(Integer id) {
 		Id = id;
 	}
-	public Customer getiCustomer() {
-		return iCustomer;
+	public String getType() {
+		return type;
 	}
-	public void setiCustomer(Customer iCustomer) {
-		this.iCustomer = iCustomer;
+	public void setType(String type) {
+		this.type = type;
 	}
-	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getCreatedBy() {
 		return createdBy;
 	}
@@ -81,36 +75,17 @@ public class CustomerProfile {
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
-		
 	public Boolean getIsActive() {
 		return isActive;
 	}
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
-	
-	public String getProfileType() {
-		return profileType;
-	}
-	public void setProfileType(String profileType) {
-		this.profileType = profileType;
-	}
-	
-
-	public Organization getiOrg() {
-		return iOrg;
-	}
-	public void setiOrg(Organization iOrg) {
-		this.iOrg = iOrg;
-	}
 	@Override
 	public String toString() {
-		return "CustomerProfile [Id=" + Id + ", iCustomer=" + iCustomer 
-				+ ", iOrg=" + iOrg + ", profileType=" + profileType + ", createdBy=" + createdBy + ", createdDate="
-				+ createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + ", isActive="
-				+ isActive + "]";
+		return "RefInterestRateType [Id=" + Id + ", type=" + type + ", description=" + description + ", createdBy="
+				+ createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate="
+				+ modifiedDate + ", isActive=" + isActive + "]";
 	}
-	
-	
 	
 }

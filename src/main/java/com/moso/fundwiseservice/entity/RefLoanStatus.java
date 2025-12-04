@@ -1,19 +1,34 @@
 package com.moso.fundwiseservice.entity;
 
 import java.sql.Date;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity(name="ref_invoice_method")
-public class InvoiceMethod {
+@Entity(name="ref_loan_status")
+public class RefLoanStatus {
+
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")
 	private Integer Id;
-	private String invoiceMethod;
+	/*
+	 *   NEW,
+        IN_REVIEW,
+        UNDERWRITING,
+        CONDITIONAL_APPROVAL,
+        APPROVED,
+        DOCS_OUT,
+        FUNDED,
+        DECLINED,
+        WITHDRAWN
+	 */
+	private String status;
+	private String description;
 	private String createdBy;
 	@CreationTimestamp
 	private Date createdDate; 
@@ -21,9 +36,7 @@ public class InvoiceMethod {
 	@UpdateTimestamp
 	private Date modifiedDate;
 	private Boolean isActive;
-
-	
-	public InvoiceMethod() {
+	public RefLoanStatus() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -33,13 +46,18 @@ public class InvoiceMethod {
 	public void setId(Integer id) {
 		Id = id;
 	}
-	public String getInvoiceMethod() {
-		return invoiceMethod;
+	public String getStatus() {
+		return status;
 	}
-	public void setInvoiceMethod(String invoiceMethod) {
-		this.invoiceMethod = invoiceMethod;
+	public void setStatus(String status) {
+		this.status = status;
 	}
-		
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getCreatedBy() {
 		return createdBy;
 	}
@@ -72,11 +90,10 @@ public class InvoiceMethod {
 	}
 	@Override
 	public String toString() {
-		return "InvoiceMethod [Id=" + Id + ", invoiceMethod=" + invoiceMethod + ", createdBy=" + createdBy
-				+ ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate
-				+ ", isActive=" + isActive + "]";
+		return "RefLoanStatus [Id=" + Id + ", status=" + status + ", description=" + description + ", createdBy="
+				+ createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate="
+				+ modifiedDate + ", isActive=" + isActive + "]";
 	}
-	
 	
 	
 	

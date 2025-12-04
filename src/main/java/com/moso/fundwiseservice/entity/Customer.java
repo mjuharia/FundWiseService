@@ -15,9 +15,20 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+
+/*
+ * Customer can be a :
+ * Borrower
+ * Broker
+ * Title Company
+ * Individual Borrower
+ * Defined in the Customer Profile
+ * 
+ */
 
 @Entity(name="customer")
 public class Customer {
@@ -31,6 +42,7 @@ public class Customer {
 	private String state;
 	private String country;
 	private String postalCcode;
+	private String experienceLevel;
 	private String createdBy;
 	@CreationTimestamp
 	private Date createdOn; 
@@ -38,7 +50,8 @@ public class Customer {
 	@UpdateTimestamp
 	private Date modifiedOn;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "organization_id")
 	@JsonIgnore
 	private Organization iOrg;
 	
@@ -201,13 +214,24 @@ public class Customer {
 		this.iOrg = iOrg;
 	}
 
+	
+
+	public String getExperienceLevel() {
+		return experienceLevel;
+	}
+
+	public void setExperienceLevel(String experienceLevel) {
+		this.experienceLevel = experienceLevel;
+	}
+
 	@Override
 	public String toString() {
 		return "Customer [Id=" + Id + ", Name=" + Name + ", taxID=" + taxID + ", address=" + address + ", city=" + city
-				+ ", state=" + state + ", country=" + country + ", postalCcode=" + postalCcode + ", createdBy="
-				+ createdBy + ", createdOn=" + createdOn + ", modifiedBy=" + modifiedBy + ", modifiedOn=" + modifiedOn
-				+ ", iOrg=" + iOrg + ", custContacts=" + custContacts + ", custProfile=" + custProfile
-				+ ", custWireInstruction=" + custWireInstruction + ", isActive=" + isActive + "]";
+				+ ", state=" + state + ", country=" + country + ", postalCcode=" + postalCcode + ", experienceLevel="
+				+ experienceLevel + ", createdBy=" + createdBy + ", createdOn=" + createdOn + ", modifiedBy="
+				+ modifiedBy + ", modifiedOn=" + modifiedOn + ", iOrg=" + iOrg + ", custContacts=" + custContacts
+				+ ", custProfile=" + custProfile + ", custWireInstruction=" + custWireInstruction + ", isActive="
+				+ isActive + "]";
 	}
 
 	

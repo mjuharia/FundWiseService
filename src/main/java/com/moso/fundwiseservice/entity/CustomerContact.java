@@ -13,6 +13,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -25,13 +26,9 @@ public class CustomerContact {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Customer iCustomer;
+		
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnore
-	private CustomerServicingGroup iCustomerServicingGroup;
-	@OneToMany(mappedBy = "iCustomerContact")
-	@JsonIgnore
-	private List<CustomerInvoiceMethodMap> custInvoiceMethods; // fax, email, etc.
-	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "organization_id")
 	@JsonIgnore
 	private Organization iOrg;
 	private String firstName;
@@ -142,12 +139,7 @@ public class CustomerContact {
 		this.modifiedDate = modifiedDate;
 	}
 	
-	public CustomerServicingGroup getiCustomerServicingGroup() {
-		return iCustomerServicingGroup;
-	}
-	public void setiCustomerServicingGroup(CustomerServicingGroup iCustomerServicingGroup) {
-		this.iCustomerServicingGroup = iCustomerServicingGroup;
-	}
+	
 	public Boolean getIsActive() {
 		return isActive;
 	}
@@ -167,14 +159,7 @@ public class CustomerContact {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public List<CustomerInvoiceMethodMap> getCustInvoiceMethods() {
-		return custInvoiceMethods;
-	}
-	public void setCustInvoiceMethods(List<CustomerInvoiceMethodMap> custInvoiceMethods) {
-		this.custInvoiceMethods = custInvoiceMethods;
-	}
 		
-	
 	public Organization getiOrg() {
 		return iOrg;
 	}
@@ -183,8 +168,7 @@ public class CustomerContact {
 	}
 	@Override
 	public String toString() {
-		return "CustomerContact [Id=" + Id + ", iCustomer=" + iCustomer + ", iCustomerServicingGroup="
-				+ iCustomerServicingGroup + ", custInvoiceMethods=" + custInvoiceMethods + ", iOrg=" + iOrg
+		return "CustomerContact [Id=" + Id + ", iCustomer=" + iCustomer +  ", iOrg=" + iOrg
 				+ ", firstName=" + firstName + ", lastName=" + lastName + ", emailAddress=" + emailAddress
 				+ ", phoneNumber=" + phoneNumber + ", faxNumber=" + faxNumber + ", address=" + address + ", city="
 				+ city + ", state=" + state + ", country=" + country + ", postalcode=" + postalcode + ", createdBy="

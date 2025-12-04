@@ -12,6 +12,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
@@ -23,10 +24,9 @@ public class CustomerWireInstruction {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Customer iCustomer;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnore
-	private CustomerServicingGroup iCustomerServicingGroup;
-	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "organization_id")
 	@JsonIgnore
 	private Organization iOrg;
 	private String accountNumber;
@@ -111,12 +111,7 @@ public class CustomerWireInstruction {
 		this.isActive = isActive;
 	}
 	
-	public CustomerServicingGroup getiCustomerServicingGroup() {
-		return iCustomerServicingGroup;
-	}
-	public void setiCustomerServicingGroup(CustomerServicingGroup iCustomerServicingGroup) {
-		this.iCustomerServicingGroup = iCustomerServicingGroup;
-	}
+	
 	public Organization getiOrg() {
 		return iOrg;
 	}
@@ -125,8 +120,7 @@ public class CustomerWireInstruction {
 	}
 	@Override
 	public String toString() {
-		return "CustomerWireInstruction [Id=" + Id + ", iCustomer=" + iCustomer + ", iCustomerServicingGroup="
-				+ iCustomerServicingGroup + ", iOrg=" + iOrg + ", accountNumber=" + accountNumber + ", routingNumber="
+		return "CustomerWireInstruction [Id=" + Id + ", iCustomer=" + iCustomer + ", iOrg=" + iOrg + ", accountNumber=" + accountNumber + ", routingNumber="
 				+ routingNumber + ", bankName=" + bankName + ", comments=" + comments + ", createdBy=" + createdBy
 				+ ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate
 				+ ", isActive=" + isActive + "]";

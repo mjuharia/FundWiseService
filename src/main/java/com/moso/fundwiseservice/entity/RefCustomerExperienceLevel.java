@@ -1,16 +1,17 @@
 package com.moso.fundwiseservice.entity;
 
 import java.sql.Date;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-
-@Entity(name="ref_state")
-public class State {
+@Entity(name="ref_EL")
+public class RefCustomerExperienceLevel {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")
 	private Integer Id;
@@ -24,60 +25,71 @@ public class State {
 	private Date modifiedDate;
 	private Boolean isActive;
 	
-	public State() {
+	public RefCustomerExperienceLevel() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public Integer getId() {
 		return Id;
 	}
+
 	public void setId(Integer id) {
 		Id = id;
 	}
+
 	public String getShortCode() {
 		return shortCode;
 	}
+
 	public void setShortCode(String shortCode) {
 		this.shortCode = shortCode;
 	}
+
 	public String getName() {
 		return Name;
 	}
+
 	public void setName(String name) {
 		Name = name;
 	}
-	@Override
-	public String toString() {
-		return "State [Id=" + Id + ", shortCode=" + shortCode + ", Name=" + Name + "]";
-	}
-	
+
 	public String getCreatedBy() {
 		return createdBy;
 	}
+
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
+
 	public Date getCreatedDate() {
 		return createdDate;
 	}
+
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+
 	public String getModifiedBy() {
 		return modifiedBy;
 	}
+
 	public void setModifiedBy(String modifiedBy) {
 		this.modifiedBy = modifiedBy;
 	}
+
 	public Date getModifiedDate() {
 		return modifiedDate;
 	}
+
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
+
 	public Boolean getIsActive() {
 		return isActive;
 	}
+
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}

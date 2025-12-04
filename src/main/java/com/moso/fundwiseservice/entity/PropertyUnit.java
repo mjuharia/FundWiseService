@@ -14,39 +14,34 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
-@Entity(name="user")
-public class User {
+@Entity(name="property_unit")
+public class PropertyUnit {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")
 	private Integer Id;
-    private String firstName;
-    private String lastName;
-    private String email;
-
-	private String passwordHash;
-
-	@ManyToOne(fetch = FetchType.LAZY)
+	private Integer squareFeet;
+    private Integer bedrooms;
+    private Integer bathrooms;
+    private Integer yearBuilt;
+    @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "organization_id")
 	@JsonIgnore
 	private Organization iOrg;
-	
-	
-
-	private Boolean isActive; //(enum: ACTIVE, INACTIVE)
-
-	private String createdBy;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "property_id")
+	@JsonIgnore
+	private Property iProp;
+    
+    private String createdBy;
 	@CreationTimestamp
 	private Date createdOn; 
 	private String modifiedBy;
 	@UpdateTimestamp
 	private Date modifiedOn;
 	
-	
-
-	public User() {
+	public PropertyUnit() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -59,36 +54,36 @@ public class User {
 		Id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public Integer getSquareFeet() {
+		return squareFeet;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setSquareFeet(Integer squareFeet) {
+		this.squareFeet = squareFeet;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public Integer getBedrooms() {
+		return bedrooms;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setBedrooms(Integer bedrooms) {
+		this.bedrooms = bedrooms;
 	}
 
-	public String getEmail() {
-		return email;
+	public Integer getBathrooms() {
+		return bathrooms;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setBathrooms(Integer bathrooms) {
+		this.bathrooms = bathrooms;
 	}
 
-	public String getPasswordHash() {
-		return passwordHash;
+	public Integer getYearBuilt() {
+		return yearBuilt;
 	}
 
-	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
+	public void setYearBuilt(Integer yearBuilt) {
+		this.yearBuilt = yearBuilt;
 	}
 
 	public Organization getiOrg() {
@@ -99,14 +94,12 @@ public class User {
 		this.iOrg = iOrg;
 	}
 
-	
-
-	public Boolean getIsActive() {
-		return isActive;
+	public Property getiProp() {
+		return iProp;
 	}
 
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
+	public void setiProp(Property iProp) {
+		this.iProp = iProp;
 	}
 
 	public String getCreatedBy() {
@@ -143,12 +136,13 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [Id=" + Id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", passwordHash=" + passwordHash + ", iOrg=" + iOrg + ", isActive=" + isActive
-				+ ", createdBy=" + createdBy + ", createdOn=" + createdOn + ", modifiedBy=" + modifiedBy
-				+ ", modifiedOn=" + modifiedOn + "]";
+		return "PropertyUnit [Id=" + Id + ", squareFeet=" + squareFeet + ", bedrooms=" + bedrooms + ", bathrooms="
+				+ bathrooms + ", yearBuilt=" + yearBuilt + ", iOrg=" + iOrg + ", iProp=" + iProp + ", createdBy="
+				+ createdBy + ", createdOn=" + createdOn + ", modifiedBy=" + modifiedBy + ", modifiedOn=" + modifiedOn
+				+ "]";
 	}
-
+	
+	
 	
 	
 }
